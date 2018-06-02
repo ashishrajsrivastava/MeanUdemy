@@ -2,14 +2,16 @@ var express = require('express')
 var path = require('path');
 
 var app = express();
+
+app.use(function(req,res,next){
+    console.log(req.method,req.url);
+    next();
+})
+
+app.use(express.static(path.join(__dirname,'public')))
 app.set('port',3000);
 
-app.get('/',function(req,res){
-    console.log('hit the root');
-    res
-        .status(200)
-        .sendFile(path.join(__dirname,'public','index.html'));
-});
+
 
 app.get('/json',function(req,res){
     console.log('hit the api');
