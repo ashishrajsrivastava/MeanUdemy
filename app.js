@@ -12,10 +12,11 @@ app.use(function(req,res,next){
 app.use(express.static(path.join(__dirname,'public')))
 app.use('/api',routes);
 
-app.set('port',443);
+//app.set('port',3000);
 
+var port = process.env.PORT || 3000;
 
-var server = app.listen(app.get('port'),function(){
+var server = app.listen(port,function(){
     var port = server.address().port;
     console.log('some one hit you at '+port);
 });
